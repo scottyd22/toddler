@@ -1,17 +1,17 @@
 ---
-title: "toddler"
 output: github_document
 ---
 
-![hexagon sticker image](./images/toddler_hex.png){width=200px}
+# toddler <img src="images/toddler_hex.png" align="right" width="125px"/>
 
 ```{r setup, include=FALSE}
 library(toddler)
 library(dplyr)
+library(stringr)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**toddler** provides simple functions to format data frames prior to sharing. Users can add empty rows, add empty columns, or stack data frames. 
+**toddler** provides simple functions to format data frames prior to sharing. Users can add empty rows, add empty columns, stack data frames, and format column names. 
 
 ## Installation
 
@@ -34,7 +34,7 @@ library(toddler)
 df <- mtcars[1:10,] %>% 
   arrange(gear, carb)
 
-add_empty_rows(df, group = c('carb', 'gear'))
+add_empty_rows(df, group = c('gear', 'carb'))
 ```
 
 Add empty columns to a data frame using the `add_empty_cols` function.
@@ -50,4 +50,15 @@ Stack data frames into a single "tall" data frame using the `df_stack` function.
 df1 <- mtcars[1:5, 1:6]
 df2 <- iris[1:8,]
 df_stack(list(df1, df2), n = 2)
+```
+
+Format column names of a data frame using the `prep_names` function.
+
+```{r echo=TRUE, eval=TRUE}
+library(stringr)
+a <- starwars
+b <- prep_names(starwars, format = 'title', all_upper = c('height', 'Species'))
+
+data.frame(starwars_columns = colnames(a),
+           prep_names_columns = colnames(b))
 ```

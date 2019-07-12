@@ -1,21 +1,20 @@
-toddler
-================
 
-<img src="./images/toddler_hex.png" alt="hexagon sticker image" width="200" />
+# toddler <img src="images/toddler_hex.png" align="right" width="125px"/>
 
-**toddler** provides simple functions to format data frames prior to sharing. Users can add empty rows, add empty columns, or stack data frames.
+**toddler** provides simple functions to format data frames prior to
+sharing. Users can add empty rows, add empty columns, stack data frames,
+and format column names.
 
-Installation
-------------
+## Installation
 
-You can install this package from [GitHub](https://github.com/scottyd22/) with:
+You can install this package from
+[GitHub](https://github.com/scottyd22/) with:
 
 ``` r
 devtools::install_github('scottyd22/toddler')
 ```
 
-Using toddler
--------------
+## Using toddler
 
 Below are some examples on how to use the **toddler** functions.
 
@@ -28,7 +27,7 @@ library(toddler)
 df <- mtcars[1:10,] %>% 
   arrange(gear, carb)
 
-add_empty_rows(df, group = c('carb', 'gear'))
+add_empty_rows(df, group = c('gear', 'carb'))
 ```
 
     ##     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
@@ -63,7 +62,8 @@ add_empty_cols(df, group = 2, n = 2)
     ## 5  21.4     6               258   110              3.08 3.215
     ## 6  18.7     8               360   175              3.15  3.44
 
-Stack data frames into a single "tall" data frame using the `df_stack` function.
+Stack data frames into a single “tall” data frame using the `df_stack`
+function.
 
 ``` r
 df1 <- mtcars[1:5, 1:6]
@@ -89,3 +89,29 @@ df_stack(list(df1, df2), n = 2)
     ## 15          5.4         3.9          1.7         0.4  setosa      
     ## 16          4.6         3.4          1.4         0.3  setosa      
     ## 17            5         3.4          1.5         0.2  setosa
+
+Format column names of a data frame using the `prep_names` function.
+
+``` r
+library(stringr)
+a <- starwars
+b <- prep_names(starwars, format = 'title', all_upper = c('height', 'Species'))
+
+data.frame(starwars_columns = colnames(a),
+           prep_names_columns = colnames(b))
+```
+
+    ##    starwars_columns prep_names_columns
+    ## 1              name               Name
+    ## 2            height             HEIGHT
+    ## 3              mass               Mass
+    ## 4        hair_color         Hair Color
+    ## 5        skin_color         Skin Color
+    ## 6         eye_color          Eye Color
+    ## 7        birth_year         Birth Year
+    ## 8            gender             Gender
+    ## 9         homeworld          Homeworld
+    ## 10          species            SPECIES
+    ## 11            films              Films
+    ## 12         vehicles           Vehicles
+    ## 13        starships          Starships

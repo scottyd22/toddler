@@ -1,13 +1,13 @@
 Package: toddler
 Title: Make Clean Data Dirty
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: person("Scott", "Davis", email = "sadavis05@gmail.com", role = c("aut", "cre"))
-Description: Functions that allow you to add empty rows and columns to a data frame or to stack data frames on top of each other.  The resulting character data frame is nicely formatted for sharing.
+Description: Functions that allow you to add empty rows and columns to a data frame, stack data frames on top of each other, and format column names.  The resulting character data frame is nicely formatted for sharing.
 Depends: R (>= 3.5.0)
-Imports: dplyr (>= 0.7.0), tidyr (>= 0.8.0)
+Imports: dplyr (>= 0.7.0), tidyr (>= 0.8.0), stringr (>= 1.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests:
     testthat
